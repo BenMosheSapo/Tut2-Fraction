@@ -44,6 +44,14 @@ public:
 		return Result;
 	}
 
+	Fraction sub(int Num2, int Denom2){
+		int lcm = LCM(denom, Denom2);
+		Num2 *= lcm / Denom2;
+		num *= lcm / denom;
+		Fraction Result(num - Num2, lcm);
+		return Result;
+	}
+
 	void Print(){
 		cout << num << "/" << denom << endl;
 	}
@@ -55,8 +63,7 @@ public:
 
 int main(){
 	Fraction First(1, 2);
-	First.Print();
 	Fraction Result;
-	Result = First.add(3, 4);
+	Result = First.sub(1, 2);
 	Result.Print();
 }
