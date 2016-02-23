@@ -21,12 +21,14 @@ public:
 		num = numerator;
 	}
 
-	void SetNum(int numerator){
+	void SetValues(int numerator, int denominator){
 		num = numerator;
-	}
-
-	void SetDenom(int denominator){
 		denom = denominator;
+	}
+	
+	void GetValues(int &rnum, int &rdenom){
+		rnum = num;
+		rdenom = denom;
 	}
 
 	int GetNum(){
@@ -45,13 +47,19 @@ public:
 		return Result;
 	}
 
-	// Adds the negative of fraction inputed
+	// Adds the negative of fraction entered
 	Fraction sub(int Num2, int Denom2){
 		return add(-Num2, Denom2);
 	}
 
+	//multiply numerators and denominators
 	Fraction Multiply(int Num2, int Denom2){
-
+		Fraction Result(num * Num2, denom * Denom2);
+		return Result;
+	}
+	// mulitplies fraction by reciprical of entered fraction
+	Fraction Divide(int Num2, int Denom2){
+		return Multiply(Denom2, Num2);
 	}
 
 	void Print(){
@@ -66,6 +74,6 @@ public:
 int main(){
 	Fraction First(1, 2);
 	Fraction Result;
-	Result = First.sub(3, 4);
+	Result = First.Multiply(3, 4);
 	Result.Print();
 }
