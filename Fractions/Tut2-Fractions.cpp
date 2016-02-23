@@ -36,6 +36,7 @@ public:
 	int GetDenom(){
 		return denom;
 	}
+	//Finds lowest common multiple of denominators, converts numerators to match denominator and finally adds the numerators
 	Fraction add(int Num2, int Denom2){
 		int lcm = LCM(denom, Denom2);
 		Num2 *= lcm/Denom2;
@@ -44,12 +45,13 @@ public:
 		return Result;
 	}
 
+	// Adds the negative of fraction inputed
 	Fraction sub(int Num2, int Denom2){
-		int lcm = LCM(denom, Denom2);
-		Num2 *= lcm / Denom2;
-		num *= lcm / denom;
-		Fraction Result(num - Num2, lcm);
-		return Result;
+		return add(-Num2, Denom2);
+	}
+
+	Fraction Multiply(int Num2, int Denom2){
+
 	}
 
 	void Print(){
@@ -64,6 +66,6 @@ public:
 int main(){
 	Fraction First(1, 2);
 	Fraction Result;
-	Result = First.sub(1, 2);
+	Result = First.sub(3, 4);
 	Result.Print();
 }
