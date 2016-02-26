@@ -1,3 +1,5 @@
+//Ben Moshe Sapo 
+// 214527679
 #include <iostream>
 
 using namespace std;
@@ -30,12 +32,12 @@ public:
 		num = numerator;
 	}
 
-	void SetValues(int numerator, int denominator){
+	void SetNumDenom(int numerator, int denominator){
 		num = numerator;
 		denom = denominator;
 	}
 	
-	void GetValues(int &rnum, int &rdenom){
+	void GetNumDenom(int &rnum, int &rdenom){
 		rnum = num;
 		rdenom = denom;
 	}
