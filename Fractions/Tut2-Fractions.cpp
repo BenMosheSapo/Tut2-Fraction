@@ -15,6 +15,23 @@ private:
 			LCM(num1, num2, count+1);
 		}
 	}
+	//Finds the Highest Common Factor
+	int HCF(int num1, int denom1){
+		if (denom1 != 0){
+			return HCF(denom1, num1%denom1);
+		}
+		else{
+			return num1;
+		}
+	}
+	// Finds the simplest form of a fraction by dividing the numerator and denominator by the highest common factor
+	void SimplestForm(int &rnum, int &rdenom){
+		int hcf = HCF(rnum, rdenom);
+		rnum = rnum / hcf;
+		rdenom = rdenom / hcf;
+	}
+		
+	
 public:
 	Fraction(int numerator = 1, int denominator = 1){
 		denom = denominator;
@@ -63,6 +80,7 @@ public:
 	}
 
 	void Print(){
+		SimplestForm(num, denom);
 		cout << num << "/" << denom << endl;
 	}
 
@@ -74,6 +92,6 @@ public:
 int main(){
 	Fraction First(1, 2);
 	Fraction Result;
-	Result = First.Multiply(3, 4);
+	Result = First.Multiply(2, 4);
 	Result.Print();
 }
