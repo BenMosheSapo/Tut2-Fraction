@@ -7,14 +7,6 @@ private:
 	int denom;
 	int num;
 
-	int LCM(int num1, int num2, int count=1){
-		if (count % num1 == 0 && count % num2 == 0){
-			return count;
-		}
-		else{
-			LCM(num1, num2, count+1);
-		}
-	}
 	//Finds the Highest Common Factor
 	int HCF(int num1, int denom1){
 		if (denom1 != 0){
@@ -55,12 +47,11 @@ public:
 	int GetDenom(){
 		return denom;
 	}
-	//Finds lowest common multiple of denominators, converts numerators to match denominator and finally adds the numerators
+	//adds two fractions by cross multiplication
 	Fraction add(int Num2, int Denom2){
-		int lcm = LCM(denom, Denom2);
-		Num2 *= lcm/Denom2;
-		num *= lcm/denom;
-		Fraction Result(num + Num2 , lcm);
+		num = num * Denom2;
+		Num2 = Num2*denom;
+		Fraction Result(num + Num2 , denom * Denom2);
 		return Result;
 	}
 
@@ -92,6 +83,6 @@ public:
 int main(){
 	Fraction First(1, 2);
 	Fraction Result;
-	Result = First.Multiply(2, 4);
+	Result = First.add(3, 4);
 	Result.Print();
 }
