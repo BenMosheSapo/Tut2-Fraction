@@ -19,10 +19,12 @@ private:
 		}
 	}
 	// Finds the simplest form of a fraction by dividing the numerator and denominator by the highest common factor
-	void SimplestForm(int &rnum, int &rdenom){
+	void SimplestForm(int &rnum, int &rdenom, int &rWhole){
 		int hcf = HCF(rnum, rdenom);
 		rnum = rnum / hcf;
 		rdenom = rdenom / hcf;
+		rWhole = rnum / rdenom;
+		rnum = rnum - rdenom*rWhole;
 	}
 		
 	
@@ -77,8 +79,20 @@ public:
 	}
 
 	void Print(){
-		SimplestForm(num, denom);
-		cout << num << "/" << denom << endl;
+		int whole;
+		SimplestForm(num, denom,whole);
+		if (whole != 0 && num!=0){
+			cout << whole << " " << num << "/" << denom << endl;
+		}
+		else if (whole != 0){
+			cout << whole << endl;
+		}
+		else if (num!=0){
+			cout << num << "/" << denom << endl;
+		}
+		else{
+			cout << "0" << endl;
+		}
 	}
 
 	~Fraction(){
@@ -88,7 +102,7 @@ public:
 
 int main(){
 	Fraction First(1, 2);
-	Fraction Result(1,2);
-	Result = First.Divide(Result);
+	Fraction Result(6,2);
+	Result = First.add(Result);
 	Result.Print();
 }
