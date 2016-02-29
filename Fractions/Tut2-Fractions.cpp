@@ -42,15 +42,11 @@ public:
 		rdenom = denom;
 	}
 
-	int GetNum(){
-		return num;
-	}
-
-	int GetDenom(){
-		return denom;
-	}
+	
 	//adds two fractions by cross multiplication
-	Fraction add(int Num2, int Denom2){
+	Fraction add(Fraction num2){
+		int Denom2,Num2;
+		num2.GetNumDenom(Num2,Denom2);
 		num = num * Denom2;
 		Num2 = Num2*denom;
 		Fraction Result(num + Num2 , denom * Denom2);
@@ -58,18 +54,26 @@ public:
 	}
 
 	// Adds the negative of fraction entered
-	Fraction sub(int Num2, int Denom2){
-		return add(-Num2, Denom2);
+	Fraction sub(Fraction num2){
+		int Denom2,Num2;
+		num2.GetNumDenom(Num2, Denom2);
+		num2.SetNumDenom(-Num2, Denom2);
+		return add(num2);
 	}
 
 	//multiply numerators and denominators
-	Fraction Multiply(int Num2, int Denom2){
+	Fraction Multiply(Fraction num2){
+		int Num2, Denom2;
+		num2.GetNumDenom(Num2, Denom2);
 		Fraction Result(num * Num2, denom * Denom2);
 		return Result;
 	}
 	// mulitplies fraction by reciprical of entered fraction
-	Fraction Divide(int Num2, int Denom2){
-		return Multiply(Denom2, Num2);
+	Fraction Divide(Fraction num2){
+		int Num2, Denom2;
+		num2.GetNumDenom(Num2, Denom2);
+		num2.SetNumDenom(Denom2, Num2);
+		return Multiply(num2);
 	}
 
 	void Print(){
@@ -84,7 +88,7 @@ public:
 
 int main(){
 	Fraction First(1, 2);
-	Fraction Result;
-	Result = First.add(3, 4);
+	Fraction Result(1,2);
+	Result = First.Divide(Result);
 	Result.Print();
 }
