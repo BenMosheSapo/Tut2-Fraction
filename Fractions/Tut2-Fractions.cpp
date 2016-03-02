@@ -1,6 +1,7 @@
 //Ben Moshe Sapo 
 // 214527679
 #include <iostream>
+#include <math.h>
 
 using namespace std;
 
@@ -80,15 +81,17 @@ public:
 
 	void Print(){
 		int whole;
-		SimplestForm(num, denom,whole);
-		if (whole != 0 && num!=0){
-			cout << whole << " " << num << "/" << denom << endl;
+		int Num = num;
+		int Denom = denom;
+		SimplestForm(Num, Denom,whole);
+		if (whole != 0 && Num!=0){
+			cout << whole << " " << Num << "/" << abs(Denom) << endl;
 		}
 		else if (whole != 0){
 			cout << whole << endl;
 		}
-		else if (num!=0){
-			cout << num << "/" << denom << endl;
+		else if (Num!=0){
+			cout << Num << "/" << abs(Denom) << endl;
 		}
 		else{
 			cout << "0" << endl;
@@ -99,10 +102,22 @@ public:
 
 	}
 };
+Fraction operator+(Fraction num1, Fraction num2){
+	return num1.add(num2);
+}
+Fraction operator-(Fraction num1, Fraction num2){
+	return num1.sub(num2);
+}
+Fraction operator/(Fraction num1, Fraction num2){
+	return num1.Divide(num2);
+}
+Fraction operator*(Fraction num1, Fraction num2){
+	return num1.Multiply(num2);
+}
 
 int main(){
-	Fraction First(1, 2);
-	Fraction Result(6,2);
-	Result = First.add(Result);
-	Result.Print();
+	Fraction First(1, 3);
+	Fraction Result(1,2);
+	First = First - Result;
+	First.Print();
 }
