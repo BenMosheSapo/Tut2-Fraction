@@ -20,16 +20,17 @@ private:
 		}
 	}
 	// Finds the simplest form of a fraction by dividing the numerator and denominator by the highest common factor
-	void SimplestForm(int &rnum, int &rdenom, int &rWhole){
+	
+		
+	
+public:
+	void SimplestForm(int &rnum, int &rdenom, int &rWhole) {
 		int hcf = HCF(rnum, rdenom);
 		rnum = rnum / hcf;
 		rdenom = rdenom / hcf;
 		rWhole = rnum / rdenom;
 		rnum = rnum - rdenom*rWhole;
 	}
-		
-	
-public:
 	Fraction(int numerator = 1, int denominator = 1){
 		denom = denominator;
 		num = numerator;
@@ -115,9 +116,28 @@ Fraction operator*(Fraction num1, Fraction num2){
 	return num1.Multiply(num2);
 }
 
+ostream &operator<<(ostream &stream, Fraction fract) {
+	int num, denom,whole;
+	fract.GetNumDenom(num, denom);
+	fract.SimplestForm(num,denom,whole);
+	if (whole != 0 && num != 0) {
+		stream << whole << " " << num << "/" << abs(denom) << endl;
+	}
+	else if (whole != 0) {
+		stream << whole << endl;
+	}
+	else if (num != 0) {
+		stream << num << "/" << abs(denom) << endl;
+	}
+	else {
+		stream << "0" << endl;
+	}
+	return stream;
+}
+
 int main(){
-	Fraction First(1, 3);
 	Fraction Result(1,2);
-	First = First - Result;
-	First.Print();
+	Fraction First(5, 4);
+	First = First + Result;
+	cout << First << endl;
 }
