@@ -19,11 +19,12 @@ private:
 			return num1;
 		}
 	}
-	// Finds the simplest form of a fraction by dividing the numerator and denominator by the highest common factor
+
 	
 		
 	
 public:
+	// Finds the simplest form of a fraction by dividing the numerator and denominator by the highest common factor
 	void SimplestForm(int &rnum, int &rdenom, int &rWhole) {
 		int hcf = HCF(rnum, rdenom);
 		rnum = rnum / hcf;
@@ -79,7 +80,7 @@ public:
 		num2.SetNumDenom(Denom2, Num2);
 		return Multiply(num2);
 	}
-
+//Prints out the fraction as a mixed number
 	void Print(){
 		int whole;
 		int Num = num;
@@ -135,9 +136,17 @@ ostream &operator<<(ostream &stream, Fraction fract) {
 	return stream;
 }
 
+istream &operator>>(istream &stream, Fraction &fract) {
+	int num, denom;
+	stream >> num;
+	stream.ignore(1,'/' );
+	stream >> denom;
+	fract.SetNumDenom(num, denom);
+	return stream;
+}
+
 int main(){
-	Fraction Result(1,2);
 	Fraction First(5, 4);
-	First = First + Result;
+	cin >> First;
 	cout << First << endl;
 }
